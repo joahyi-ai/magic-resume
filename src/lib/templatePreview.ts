@@ -49,6 +49,37 @@ export const createTemplatePreviewData = (
   locale: TemplatePreviewLocale
 ): ResumeData => {
   const baseData = getTemplatePreviewBaseData(locale);
+  const isSankeTemplate = template.id === "sanke";
+  const isSankeV2Template = template.id === "sanke-v2";
+  const sankeBasicFieldKeys = new Set(["name", "title", "email", "phone"]);
+  const basic = isSankeTemplate || isSankeV2Template
+    ? {
+        ...baseData.basic,
+        fieldOrder: baseData.basic.fieldOrder?.filter((field) =>
+          sankeBasicFieldKeys.has(field.key)
+        ),
+        customFields: [],
+        githubContributionsVisible: false,
+      }
+    : {
+        ...baseData.basic,
+      };
+  const menuSections = isSankeV2Template
+    ? baseData.menuSections.map((section) => {
+        const sectionOrderMap: Record<string, number> = {
+          basic: 0,
+          selfEvaluation: 1,
+          projects: 2,
+          experience: 3,
+          skills: 4,
+          education: 5,
+        };
+        return {
+          ...section,
+          order: sectionOrderMap[section.id] ?? section.order,
+        };
+      })
+    : baseData.menuSections;
 
   return {
     ...baseData,
@@ -64,9 +95,10 @@ export const createTemplatePreviewData = (
       pagePadding: template.spacing.contentPadding,
     },
     basic: {
-      ...baseData.basic,
+      ...basic,
       layout: template.basic.layout,
     },
+    menuSections,
   } as ResumeData;
 };
 

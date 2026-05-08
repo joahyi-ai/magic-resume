@@ -40,23 +40,57 @@ const buildTemplatePreviewData = (
   template: ResumeTemplate,
   selectedColor: string,
   mockId: string
-) =>
-({
-  ...baseData,
-  id: mockId,
-  templateId: template.id,
-  globalSettings: {
-    ...baseData.globalSettings,
-    themeColor: selectedColor || template.colorScheme.primary,
-    sectionSpacing: template.spacing.sectionGap,
-    paragraphSpacing: template.spacing.itemGap,
-    pagePadding: template.spacing.contentPadding,
-  },
-  basic: {
-    ...baseData.basic,
-    layout: template.basic.layout,
-  },
-} as any);
+): any => {
+  const isSankeTemplate = template.id === "sanke";
+  const isSankeV2Template = template.id === "sanke-v2";
+  const sankeBasicFieldKeys = new Set(["name", "title", "email", "phone"]);
+  const basic = isSankeTemplate || isSankeV2Template
+    ? {
+      ...baseData.basic,
+      fieldOrder: baseData.basic.fieldOrder?.filter((field: any) =>
+        sankeBasicFieldKeys.has(field.key)
+      ),
+      customFields: [],
+      githubContributionsVisible: false,
+    }
+    : {
+      ...baseData.basic,
+    };
+  const menuSections = isSankeV2Template
+    ? baseData.menuSections.map((section: any) => {
+      const sectionOrderMap: Record<string, number> = {
+        basic: 0,
+        selfEvaluation: 1,
+        projects: 2,
+        experience: 3,
+        skills: 4,
+        education: 5,
+      };
+      return {
+        ...section,
+        order: sectionOrderMap[section.id] ?? section.order,
+      };
+    })
+    : baseData.menuSections;
+
+  return {
+    ...baseData,
+    id: mockId,
+    templateId: template.id,
+    globalSettings: {
+      ...baseData.globalSettings,
+      themeColor: selectedColor || template.colorScheme.primary,
+      sectionSpacing: template.spacing.sectionGap,
+      paragraphSpacing: template.spacing.itemGap,
+      pagePadding: template.spacing.contentPadding,
+    },
+    basic: {
+      ...basic,
+      layout: template.basic.layout,
+    },
+    menuSections,
+  };
+};
 
 interface TemplateCardItemProps {
   index: number;

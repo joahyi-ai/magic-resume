@@ -226,8 +226,9 @@ export const useResumeStore = create(
           ? DEFAULT_TEMPLATES.find((t) => t.id === templateId)
           : DEFAULT_TEMPLATES[0];
         const isSankeTemplate = template?.id === "sanke";
+        const isSankeV2Template = template?.id === "sanke-v2";
         const sankeBasicFieldKeys = new Set(["name", "title", "email", "phone"]);
-        const basic = isSankeTemplate
+        const basic = (isSankeTemplate || isSankeV2Template)
           ? {
               ...initialResumeData.basic,
               fieldOrder: initialResumeData.basic.fieldOrder?.filter((field: any) =>
@@ -238,6 +239,23 @@ export const useResumeStore = create(
             }
           : initialResumeData.basic;
 
+        const menuSections = isSankeV2Template
+          ? initialResumeData.menuSections.map((section: any) => {
+              const sectionOrderMap: Record<string, number> = {
+                basic: 0,
+                selfEvaluation: 1,
+                projects: 2,
+                experience: 3,
+                skills: 4,
+                education: 5,
+              };
+              return {
+                ...section,
+                order: sectionOrderMap[section.id] ?? section.order,
+              };
+            })
+          : initialResumeData.menuSections;
+
         const newResume: ResumeData = {
           ...initialResumeData,
           id,
@@ -245,6 +263,7 @@ export const useResumeStore = create(
           updatedAt: new Date().toISOString(),
           templateId: template?.id,
           basic,
+          menuSections,
           title: `${locale === "en" ? "New Resume" : "新建简历"} ${id.slice(
             0,
             6

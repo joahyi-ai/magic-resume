@@ -147,13 +147,32 @@ const TemplateThumbnail = ({
         basic: {
             ...initialResumeState.basic,
             layout: (template.basic?.layout as any) || "left",
-            fieldOrder: template.id === "sanke"
+            fieldOrder: template.id === "sanke" || template.id === "sanke-v2"
                 ? initialResumeState.basic.fieldOrder?.filter((field) =>
                     ["name", "title", "email", "phone"].includes(field.key)
                 )
                 : initialResumeState.basic.fieldOrder,
-            customFields: template.id === "sanke" ? [] : initialResumeState.basic.customFields,
+            customFields:
+                template.id === "sanke" || template.id === "sanke-v2"
+                    ? []
+                    : initialResumeState.basic.customFields,
         },
+        menuSections: template.id === "sanke-v2"
+            ? initialResumeState.menuSections.map((section) => {
+                const sectionOrderMap: Record<string, number> = {
+                    basic: 0,
+                    selfEvaluation: 1,
+                    projects: 2,
+                    experience: 3,
+                    skills: 4,
+                    education: 5,
+                };
+                return {
+                    ...section,
+                    order: sectionOrderMap[section.id] ?? section.order,
+                };
+            })
+            : initialResumeState.menuSections,
         // Feed richer mock content in large preview.
         experience: sampleExperience,
     };

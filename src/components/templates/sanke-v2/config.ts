@@ -2,7 +2,7 @@ import { ResumeTemplate } from "@/types/template";
 
 export const classicCustomConfig: ResumeTemplate = {
   id: "sanke-v2",
-  name: "三科-v2",
+  name: "独立开发者模板",
   description: "基于经典模板复制的新模板，用于自定义修改",
   thumbnail: "sanke-v2",
   layout: "sanke-v2",

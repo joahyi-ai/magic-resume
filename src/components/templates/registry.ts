@@ -3,6 +3,7 @@ import { ResumeTemplate } from "@/types/template";
 
 // Import configs
 import { classicConfig } from "./classic/config";
+import { classicCustomConfig as sankeV2Config } from "./sanke-v2/config";
 import { classicCustomConfig } from "./classic-custom/config";
 import { modernConfig } from "./modern/config";
 import { leftRightConfig } from "./left-right/config";
@@ -14,6 +15,7 @@ import { editorialConfig } from "./editorial/config";
 
 // Import components
 import ClassicTemplate from "./classic";
+import SankeV2Template from "./sanke-v2";
 import ClassicCustomTemplate from "./classic-custom";
 import ModernTemplate from "./modern";
 import LeftRightTemplate from "./left-right";
@@ -35,6 +37,7 @@ export interface TemplateRegistryEntry {
  */
 export const TEMPLATE_REGISTRY: TemplateRegistryEntry[] = [
   { config: classicCustomConfig, Component: ClassicCustomTemplate },
+  { config: sankeV2Config, Component: SankeV2Template },
   { config: classicConfig, Component: ClassicTemplate },
   { config: modernConfig, Component: ModernTemplate },
   { config: leftRightConfig, Component: LeftRightTemplate },

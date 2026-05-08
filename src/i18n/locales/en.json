@@ -226,6 +226,10 @@
         "name": "三科师兄模板",
         "description": "A clean classic template with summary integrated into contact details"
       },
+      "sanke-v2": {
+        "name": "三科-v2",
+        "description": "Classic template preserving the earlier sanke version"
+      },
       "modern": {
         "name": "Two Column",
         "description": "Classic two-column layout, highlighting personal characteristics"

@@ -55,7 +55,8 @@ const ModernTemplate: React.FC<ModernTemplateProps> = ({ data, template }) => {
 
     const basicSection = enabledSections.find((s) => s.id === "basic");
     const educationSection = enabledSections.find((s) => s.id === "education");
-    const otherSections = enabledSections.filter((s) => s.id !== "basic" && s.id !== "education");
+    const selfEvaluationSection = enabledSections.find((s) => s.id === "selfEvaluation");
+    const otherSections = enabledSections.filter((s) => s.id !== "basic" && s.id !== "education" && s.id !== "selfEvaluation");
 
     return (
         <table
@@ -77,6 +78,15 @@ const ModernTemplate: React.FC<ModernTemplateProps> = ({ data, template }) => {
                         }}
                     >
                         {basicSection && renderSection(basicSection.id)}
+                        {selfEvaluationSection && (
+                            <div className="mt-6">
+                                <SelfEvaluationSection
+                                    content={data.selfEvaluationContent}
+                                    globalSettings={data.globalSettings}
+                                    variant="sidebar"
+                                />
+                            </div>
+                        )}
                         {educationSection && (
                             <div className="mt-6">
                                 <EducationSection education={data.education} globalSettings={data.globalSettings} variant="sidebar" />

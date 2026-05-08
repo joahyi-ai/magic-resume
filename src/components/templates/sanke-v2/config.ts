@@ -18,7 +18,7 @@ export const classicCustomConfig: ResumeTemplate = {
     contentPadding: 32,
   },
   basic: {
-    layout: "left",
+    layout: "right",
   },
   availableSections: ["skills", "experience", "projects", "education", "selfEvaluation", "certificates"],
 };

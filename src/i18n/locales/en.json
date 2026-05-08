@@ -222,6 +222,10 @@
         "name": "Classic",
         "description": "Traditional and minimalist layout, suitable for most job applications"
       },
+      "sanke": {
+        "name": "三科师兄模板",
+        "description": "A clean classic template with summary integrated into contact details"
+      },
       "modern": {
         "name": "Two Column",
         "description": "Classic two-column layout, highlighting personal characteristics"

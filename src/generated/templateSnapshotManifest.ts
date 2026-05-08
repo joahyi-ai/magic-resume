@@ -3,6 +3,7 @@ export const TEMPLATE_SNAPSHOT_MANIFEST = {
   "generatedAt": "2026-03-22T15:40:35.007Z",
   "locales": {
     "zh": {
+      "sanke": "/template-snapshots/zh/sanke.png?v=2026-03-22T15%3A40%3A35.007Z",
       "classic": "/template-snapshots/zh/classic.png?v=2026-03-22T15%3A40%3A35.007Z",
       "modern": "/template-snapshots/zh/modern.png?v=2026-03-22T15%3A40%3A35.007Z",
       "left-right": "/template-snapshots/zh/left-right.png?v=2026-03-22T15%3A40%3A35.007Z",
@@ -13,6 +14,7 @@ export const TEMPLATE_SNAPSHOT_MANIFEST = {
       "editorial": "/template-snapshots/zh/editorial.png?v=2026-03-22T15%3A40%3A35.007Z"
     },
     "en": {
+      "sanke": "/template-snapshots/en/sanke.png?v=2026-03-22T15%3A40%3A35.007Z",
       "classic": "/template-snapshots/en/classic.png?v=2026-03-22T15%3A40%3A35.007Z",
       "modern": "/template-snapshots/en/modern.png?v=2026-03-22T15%3A40%3A35.007Z",
       "left-right": "/template-snapshots/en/left-right.png?v=2026-03-22T15%3A40%3A35.007Z",

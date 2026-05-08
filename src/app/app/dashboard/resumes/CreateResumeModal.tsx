@@ -85,13 +85,7 @@ const TemplateCardThumbnail = ({
         );
     }
 
-    return (
-        <div className="w-full h-full flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-800/50">
-            <span className="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                {t(`dashboard.templates.${template.nameKey}.name`)}
-            </span>
-        </div>
-    );
+    return <TemplateThumbnail template={template} t={t} quality="low" />;
 };
 
 const TemplateThumbnail = ({
@@ -153,6 +147,12 @@ const TemplateThumbnail = ({
         basic: {
             ...initialResumeState.basic,
             layout: (template.basic?.layout as any) || "left",
+            fieldOrder: template.id === "sanke"
+                ? initialResumeState.basic.fieldOrder?.filter((field) =>
+                    ["name", "title", "email", "phone"].includes(field.key)
+                )
+                : initialResumeState.basic.fieldOrder,
+            customFields: template.id === "sanke" ? [] : initialResumeState.basic.customFields,
         },
         // Feed richer mock content in large preview.
         experience: sampleExperience,
@@ -305,7 +305,7 @@ export const CreateResumeModal = ({
                                                         <TemplateCardThumbnail
                                                             template={template}
                                                             t={t}
-                                                            snapshotSrc={snapshotMap[template.id]}
+                                                            snapshotSrc={template.id === "sanke" ? null : snapshotMap[template.id]}
                                                         />
                                                         <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/5 rounded-2xl pointer-events-none" />
                                                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

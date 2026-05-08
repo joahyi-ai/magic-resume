@@ -76,7 +76,7 @@ export const initialResumeState = {
     <li>技术管理：具备团队管理经验，主导过多个大型项目的技术选型和架构设计</li>
   </ul>
 </div>`,
-  selfEvaluationContent: "",
+  selfEvaluationContent: "AI 产品经理，具备从 0 到 1 搭建智能产品的经验，熟悉大模型应用、用户研究、需求拆解与数据驱动迭代。曾主导 AI 助手、内容生成与数据分析类产品，能够协调算法、工程、设计和运营团队，将业务目标转化为可落地的产品方案。",
   experience: [
     {
       id: "1",
@@ -140,13 +140,20 @@ export const initialResumeState = {
   ],
   menuSections: [
     { id: "basic", title: "基本信息", icon: "👤", enabled: true, order: 0 },
-    { id: "skills", title: "专业技能", icon: "⚡", enabled: true, order: 1 },
+    {
+      id: "selfEvaluation",
+      title: "个人摘要",
+      icon: "📝",
+      enabled: true,
+      order: 1,
+    },
+    { id: "skills", title: "专业技能", icon: "⚡", enabled: true, order: 2 },
     {
       id: "experience",
       title: "工作经验",
       icon: "💼",
       enabled: true,
-      order: 2,
+      order: 3,
     },
 
     {
@@ -154,14 +161,14 @@ export const initialResumeState = {
       title: "项目经历",
       icon: "🚀",
       enabled: true,
-      order: 3,
+      order: 4,
     },
     {
       id: "education",
       title: "教育经历",
       icon: "🎓",
       enabled: true,
-      order: 4,
+      order: 5,
     },
   ],
   certificates: [],
@@ -226,7 +233,7 @@ export const initialResumeStateEn = {
     <li>Technical Leadership: Team management experience, led technology selection and architecture design for large projects</li>
   </ul>
 </div>`,
-  selfEvaluationContent: "",
+  selfEvaluationContent: "AI Product Manager with end-to-end experience building intelligent products from 0 to 1. Skilled in LLM applications, user research, requirement breakdown, and data-driven iteration. Led AI assistant, content generation, and analytics products by aligning algorithm, engineering, design, and operations teams around measurable business outcomes.",
   experience: [
     {
       id: "1",
@@ -297,32 +304,39 @@ export const initialResumeStateEn = {
       order: 0,
     },
     {
+      id: "selfEvaluation",
+      title: "Summary",
+      icon: "📝",
+      enabled: true,
+      order: 1,
+    },
+    {
       id: "skills",
       title: "Skills",
       icon: "⚡",
       enabled: true,
-      order: 1,
+      order: 2,
     },
     {
       id: "experience",
       title: "Experience",
       icon: "💼",
       enabled: true,
-      order: 2,
+      order: 3,
     },
     {
       id: "projects",
       title: "Projects",
       icon: "🚀",
       enabled: true,
-      order: 3,
+      order: 4,
     },
     {
       id: "education",
       title: "Education",
       icon: "🎓",
       enabled: true,
-      order: 4,
+      order: 5,
     },
   ],
   certificates: [],

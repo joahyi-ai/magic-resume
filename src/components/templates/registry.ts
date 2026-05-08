@@ -3,6 +3,7 @@ import { ResumeTemplate } from "@/types/template";
 
 // Import configs
 import { classicConfig } from "./classic/config";
+import { classicCustomConfig } from "./classic-custom/config";
 import { modernConfig } from "./modern/config";
 import { leftRightConfig } from "./left-right/config";
 import { timelineConfig } from "./timeline/config";
@@ -13,6 +14,7 @@ import { editorialConfig } from "./editorial/config";
 
 // Import components
 import ClassicTemplate from "./classic";
+import ClassicCustomTemplate from "./classic-custom";
 import ModernTemplate from "./modern";
 import LeftRightTemplate from "./left-right";
 import TimelineTemplate from "./timeline";
@@ -32,6 +34,7 @@ export interface TemplateRegistryEntry {
  * then add one line here. No other files need to change.
  */
 export const TEMPLATE_REGISTRY: TemplateRegistryEntry[] = [
+  { config: classicCustomConfig, Component: ClassicCustomTemplate },
   { config: classicConfig, Component: ClassicTemplate },
   { config: modernConfig, Component: ModernTemplate },
   { config: leftRightConfig, Component: LeftRightTemplate },

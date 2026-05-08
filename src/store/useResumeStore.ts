@@ -225,6 +225,18 @@ export const useResumeStore = create(
         const template = templateId
           ? DEFAULT_TEMPLATES.find((t) => t.id === templateId)
           : DEFAULT_TEMPLATES[0];
+        const isSankeTemplate = template?.id === "sanke";
+        const sankeBasicFieldKeys = new Set(["name", "title", "email", "phone"]);
+        const basic = isSankeTemplate
+          ? {
+              ...initialResumeData.basic,
+              fieldOrder: initialResumeData.basic.fieldOrder?.filter((field: any) =>
+                sankeBasicFieldKeys.has(field.key)
+              ),
+              customFields: [],
+              githubContributionsVisible: false,
+            }
+          : initialResumeData.basic;
 
         const newResume: ResumeData = {
           ...initialResumeData,
@@ -232,6 +244,7 @@ export const useResumeStore = create(
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
           templateId: template?.id,
+          basic,
           title: `${locale === "en" ? "New Resume" : "新建简历"} ${id.slice(
             0,
             6

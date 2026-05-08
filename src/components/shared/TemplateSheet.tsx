@@ -58,6 +58,11 @@ const TemplatePreview = ({
           </div>
         )}
       </div>
+      <div className="border-t border-gray-100 bg-white px-2 py-2 dark:border-neutral-800 dark:bg-neutral-950">
+        <span className="block truncate text-center text-xs font-medium text-gray-800 dark:text-gray-100">
+          {template.name}
+        </span>
+      </div>
       {isActive && (
         <motion.div
           layoutId="template-selected"
